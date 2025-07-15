@@ -26,11 +26,11 @@ class MyFooterAccount extends StatelessWidget {
                 decoration: TextDecoration.underline,
                 decorationColor: Color(0xFFF83758)
             ),
-            recognizer: TapGestureRecognizer()..onTap = () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Login())
-              );
-            }
+            // recognizer: TapGestureRecognizer()..onTap = () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => Login())
+            //   );
+            // }
         ),
 
       ]

@@ -24,11 +24,11 @@ class TextRegister extends StatelessWidget {
                 .textTheme
                 .bodyMedium!
                 .apply(color: Color(0xFFFF4B26)),
-            recognizer: TapGestureRecognizer()..onTap = () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => Register())
-              );
-            }
+            // recognizer: TapGestureRecognizer()..onTap = () {
+            //   Navigator.push(context,
+            //       MaterialPageRoute(builder: (context) => Register())
+            //   );
+           // }
         ),
 
         TextSpan(

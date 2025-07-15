@@ -4,14 +4,16 @@ import '../widgets/footer.dart';
 import '../widgets/form.dart';
 import '../widgets/social_media_buttons.dart';
 
-
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
+
   @override
   State<CreateAccount> createState() => _CreateAccountState();
 }
 
 class _CreateAccountState extends State<CreateAccount> {
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,6 @@ class _CreateAccountState extends State<CreateAccount> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             // SizedBox(height: 64,),
               Text(
                 'Create an account',
                 style: Theme.of(context)
@@ -30,18 +31,24 @@ class _CreateAccountState extends State<CreateAccount> {
                     .headlineLarge!
                     .apply(fontWeightDelta: 2),
               ),
-              SizedBox(height: 32),
-             ///Form
-              MyFormAccount(),
-                    SizedBox(height: 32,),
-                   ///Divider
-                 MyDividerAccount(),
-                    SizedBox(height: 32,),
-                   ///SocialMedia
-                 SocialMediaButtons(),
-                    SizedBox(height: 32,),
-                    ///Footer
-              MyFooterAccount()
+              const SizedBox(height: 32),
+
+              MyFormAccount(formKey: formKey),
+
+              const SizedBox(height: 32),
+
+              /// Divider
+              const MyDividerAccount(),
+
+              const SizedBox(height: 32),
+
+              /// SocialMedia
+              const SocialMediaButtons(),
+
+              const SizedBox(height: 32),
+
+              /// Footer
+              const MyFooterAccount(),
             ],
           ),
         ),
@@ -49,6 +56,3 @@ class _CreateAccountState extends State<CreateAccount> {
     );
   }
 }
-
-
-

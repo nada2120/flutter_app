@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../screens/home.dart';
+import '../../../constants/strings.dart';
 
 class CreateAccountButton extends StatelessWidget {
   const CreateAccountButton({
-    super.key,
-    required this.formKey,
+    super.key, required this.formKey,
+
   });
 
   final GlobalKey<FormState> formKey;
@@ -16,13 +16,9 @@ class CreateAccountButton extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         onPressed: () {
-          if(formKey.currentState!.validate()) {
-            Navigator.push(context,
-                MaterialPageRoute(
-                    builder: (context) => MyHome()
-                )
-            );
-          }
+           if(formKey.currentState!.validate()) {
+             Navigator.pushNamed(context, homeScreen);
+           }
         },
         style: ElevatedButton.styleFrom(
             padding: EdgeInsets.symmetric(
