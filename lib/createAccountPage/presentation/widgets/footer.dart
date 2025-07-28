@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:team_project/screens/login.dart';
 
 class MyFooterAccount extends StatelessWidget {
-  const MyFooterAccount({super.key});
+  const MyFooterAccount();
 
   @override
   Widget build(BuildContext context) {

@@ -3,16 +3,14 @@ import 'package:flutter/material.dart';
 import '../../../constants/texts.dart';
 
 class PictureOfFeatured extends StatelessWidget {
-  const PictureOfFeatured({
-    super.key,
-  });
+  const PictureOfFeatured();
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         ClipRRect(
-          child: Image.asset(NTexts.featured[0]['image'],
+          child: Image.asset(featured[0]['image'],
             width: double.infinity,
             fit: BoxFit.fill,
           ),
@@ -32,7 +30,7 @@ class PictureOfFeatured extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        NTexts.featured[0]['title'],
+                        featured[0]['title'],
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -41,7 +39,7 @@ class PictureOfFeatured extends StatelessWidget {
                       ),
                       SizedBox(height: 4,),
                       Text(
-                        NTexts.featured[0]['subtitle'],
+                        featured[0]['subtitle'],
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,

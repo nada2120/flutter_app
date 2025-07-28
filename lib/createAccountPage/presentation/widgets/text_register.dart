@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import '../../../screens/register.dart';
 
 class TextRegister extends StatelessWidget {
-  const TextRegister({
-    super.key,
-  });
+  const TextRegister();
 
   @override
   Widget build(BuildContext context) {

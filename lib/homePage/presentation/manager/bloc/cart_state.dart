@@ -1,21 +1,36 @@
 import 'package:equatable/equatable.dart';
-import 'package:team_project/models/product_model.dart';
+import '../../../../api/models/product_model.dart';
 
-class CartState extends Equatable{
+class CartState extends Equatable {
   final Map<Product, int> items;
-  final double totalPrice;
+  final List<Product> allProducts;
 
-   CartState(this.items) : totalPrice =
-     items.entries.map((e) => e.key.price * e.value).fold(0.0,
-         (sum, item) => sum + item
-     );
+  const CartState(this.items, this.allProducts);
+
+  double get totalPrice {
+    double total = 0;
+    items.forEach((productId, quantity) {
+      final product = allProducts.firstWhere(
+            (p) => p.id == productId,
+       // orElse: () => Product.empty(),
+      );
+      total += product.price * quantity;
+    });
+    return total;
+  }
+
+  int get totalQuantity {
+    int total = 0;
+    items.forEach((_, quantity) {
+      total += quantity;
+    });
+    return total;
+  }
 
   CartState copyWith({Map<Product, int>? items}) {
-    return CartState(items ?? this.items);
+    return CartState(items ?? this.items, allProducts);
   }
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [items, totalPrice];
-
+  List<Object?> get props => [items, allProducts];
 }

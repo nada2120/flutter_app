@@ -1,21 +1,46 @@
-import 'package:team_project/models/product_model.dart';
+import 'package:flutter/material.dart';
+import 'package:team_project/categoryPage/presentation/screens/category_page.dart';
 
-class NTexts {
+import '../favoritePage/presentation/screens/favorite_page.dart';
+import '../homePage/presentation/screens/home_page.dart';
+import '../screens/profile_page.dart';
+import '../screens/search_page.dart';
 
-  static const List <String> PictureSocialMedia = [
+const createAccountScreen = '/create_account';
+const homeScreen = '/home_page';
+const cartScreen = '/my_cart';
+const productDetailsScreen = '/product_details';
+const navigationBarMenu = '/navigation_bar';
+const favoritePage = '/favorite_page';
+const searchPage = '/search_page';
+const categoryPage = '/category_page';
+const categoryType = '/category_type';
+
+
+const path = "https://dummyjson.com/products";
+
+int currentIndex = 0;
+final List<Widget> pages = [
+  HomePage() ,
+  SearchPage(),
+  FavoritePage(),
+  CategoryPage()
+];
+
+   const List <String> PictureSocialMedia = [
     'assets/images/google.svg',
     'assets/images/apple.svg',
     'assets/images/facebook.svg'
   ];
 
-  static const List <Map<String, dynamic>> featured = [
+   const List <Map<String, dynamic>> featured = [
     {
       'image' : 'assets/images/featured.png',
       'title' : '50-40% OFF',
       'subtitle' : 'Now in (product) All colours '
     }
   ];
-  static const List<Map<String, dynamic>> categories = [
+   const List<Map<String, dynamic>> categories = [
     {
       'image' : 'assets/images/categories/beauty.png',
       'title' : 'Beauty'
@@ -35,60 +60,66 @@ class NTexts {
     },
   ];
 
-  static List<Product> products = [
-    Product(
-        image: 'assets/images/products/Black Winter.png',
-        name: 'Black Winter',
-        details: 'Autumn And Winter Casual cotton-padded jacket...',
-        price: 499
-    ),
-    Product(
-        image : 'assets/images/products/Mens Starry.png',
-        name : 'Mens Starry',
-        details : 'Mens Starry Sky Printed Shirt 100% Cotton Fabric',
-        price : 399
-    ),
-    Product(
-        image : 'assets/images/products/Black Dress.png',
-        name : 'Black Dress',
-        details : 'Solid Black Dress for Women, Sexy Chain Shorts Ladi...',
-        price : 2000
-    ),
-    Product(
-        image : 'assets/images/products/Pink Embroide.png',
-        name : 'Pink Embroide',
-        details : 'EARTHEN Rose Pink Embroidered Tiered Max...',
-        price : 1900
-    ),
-    Product(
-        image : 'assets/images/products/Flare Dress.png',
-        name : 'Flare Dress',
-        details : 'Antheaa Black & Rust Orange Floral Print Tiered Midi F...',
-        price : 1999
-    ),
-    Product(
-        image : 'assets/images/products/NIke Sneakers.png',
-        name : 'NIke Sneakers',
-        details : 'Nike Air Jordan Retro 1 Low Mystic Black',
-        price : 1900
-    ),
-    Product(
-        image : 'assets/images/products/Jordan Stay.png',
-        name : 'Jordan Stay',
-        details : "The classic Air Jordan 12 to create a shoe that's fres",
-        price : 4999
-    ),
-    Product(
-        image : 'assets/images/products/denim dress.png',
-        name : 'denim dress',
-        details : 'Blue cotton denim dress Look 2 Printed cotton dr...',
-        price : 999
-    ),
-    Product(
-        image : 'assets/images/products/Black Jacket 12.png',
-        name : 'Black Jacket 12',
-        details : 'This warm and comfortable jacket is great for learni...',
-        price : 2999
-    ),
-  ];
-}
+  // List<Product> products = [
+  //   Product(
+  //     image: 'assets/images/products/Black Winter.png',
+  //     name: 'Black Winter',
+  //     details: 'Warm black winter jacket with cotton padding, perfect for cold weather.',
+  //     price: 499,
+  //   ),
+  //    Product(
+  //     image: 'assets/images/products/Mens Starry.png',
+  //     name: 'Mens Starry',
+  //     details: 'Men\'s navy blue shirt with starry sky print, 100% breathable cotton.',
+  //     price: 399,
+  //   ),
+  //    Product(
+  //     image: 'assets/images/products/Black Dress.png',
+  //     name: 'Black Dress',
+  //     details: 'Elegant black evening dress with golden chain straps and a stylish cut.',
+  //     price: 2000,
+  //   ),
+  //    Product(
+  //     image: 'assets/images/products/Pink Embroide.png',
+  //     name: 'Pink Embroide',
+  //     details: 'Soft pink maxi dress with floral embroidery, ideal for summer outings.',
+  //     price: 1900,
+  //   ),
+  //    Product(
+  //     image: 'assets/images/products/Flare Dress.png',
+  //     name: 'Flare Dress',
+  //     details: 'Tiered midi dress in black and rust orange floral print, flowy and chic.',
+  //     price: 1999,
+  //   ),
+  //   Product(
+  //     image: 'assets/images/products/NIke Sneakers.png',
+  //     name: 'NIke Sneakers',
+  //     details: 'Nike Air Jordan 1 Low in mystic black, sleek design with great comfort.',
+  //     price: 1900,
+  //   ),
+  //   Product(
+  //     image: 'assets/images/products/Jordan Stay.png',
+  //     name: 'Jordan Stay',
+  //     details: 'Inspired by the Air Jordan 12, this sneaker combines classic and modern vibes.',
+  //     price: 4999,
+  //   ),
+  //   Product(
+  //     image: 'assets/images/products/denim dress.png',
+  //     name: 'denim dress',
+  //     details: 'Casual blue denim dress with printed design, suitable for everyday wear.',
+  //     price: 999,
+  //   ),
+  //   Product(
+  //     image: 'assets/images/products/Black Jacket 12.png',
+  //     name: 'Black Jacket 12',
+  //     details: 'Stylish black winter jacket with soft lining and a fitted hood for warmth.',
+  //     price: 2999,
+  //   ),
+  // ];
+
+const List<String> sizes = [
+  '160×120',
+  '180×200',
+  '200×200',
+  '220×220',
+];

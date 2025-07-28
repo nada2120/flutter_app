@@ -5,7 +5,7 @@ import '../widgets/form.dart';
 import '../widgets/social_media_buttons.dart';
 
 class CreateAccount extends StatefulWidget {
-  const CreateAccount({super.key});
+  const CreateAccount();
 
   @override
   State<CreateAccount> createState() => _CreateAccountState();

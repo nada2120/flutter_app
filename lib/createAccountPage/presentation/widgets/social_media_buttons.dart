@@ -5,7 +5,7 @@ import 'package:team_project/constants/texts.dart';
 import '../../../common/container_button.dart';
 
 class SocialMediaButtons extends StatefulWidget {
-  const SocialMediaButtons({super.key});
+  const SocialMediaButtons();
 
   @override
   State<SocialMediaButtons> createState() => _SocialMediaButtonsState();
@@ -19,14 +19,14 @@ class _SocialMediaButtonsState extends State<SocialMediaButtons> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: List.generate(
-            NTexts.PictureSocialMedia.length,
+            PictureSocialMedia.length,
             (index) {
               return ContainerButton(
                   sizeContainer: 60,
                   sizeBorder: 2,
                   colorBorder: Color(0xFFF83758),
                   widget:  SvgPicture.asset(
-                    NTexts.PictureSocialMedia[index],
+                    PictureSocialMedia[index],
                     width: 25,
                     height: 25,
                   ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../constants/strings.dart';
+import '../../../constants/texts.dart';
+
 
 class CreateAccountButton extends StatelessWidget {
-  const CreateAccountButton({
-    super.key, required this.formKey,
+  const CreateAccountButton({required this.formKey,
 
   });
 

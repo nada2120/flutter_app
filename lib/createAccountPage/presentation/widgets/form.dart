@@ -5,7 +5,7 @@ import 'create_button.dart';
 class MyFormAccount extends StatefulWidget {
   final GlobalKey<FormState> formKey; // ✅ نمرر المفتاح من الخارج
 
-  const MyFormAccount({super.key, required this.formKey});
+  const MyFormAccount({ required this.formKey});
 
   @override
   State<MyFormAccount> createState() => _MyFormAccountState();
@@ -22,7 +22,7 @@ class _MyFormAccountState extends State<MyFormAccount> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.formKey, // ✅ استخدام المفتاح الممرر من فوق
+      key: widget.formKey,
       child: Column(
         children: [
           /// Username or Email
