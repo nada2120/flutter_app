@@ -2,7 +2,6 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:team_project/api/models/product_model.dart';
-import 'package:team_project/api/models/product_responce.dart';
 
 part 'api_service.g.dart';
 

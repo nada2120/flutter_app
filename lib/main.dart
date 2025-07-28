@@ -1,25 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:team_project/screens/app_router.dart';
-
 import 'api/bloc/product_cubit.dart';
-import 'api/models/category_model.dart';
-import 'api/models/product_model.dart';
 import 'api/repository/product_repository.dart';
 import 'api/services/api_service.dart';
 import 'homePage/presentation/manager/bloc/cart_bloc.dart';
 import 'favoritePage/presentation/manager/favorite_cubit.dart';
 import 'constants/texts.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter();
-  Hive.registerAdapter(ProductAdapter());
-  Hive.registerAdapter(CategoryAdapter());
-  await Hive.openBox<Product>('cart');
-  await Hive.openBox('favorites');
+void main() {
 
   final dio = Dio();
   final apiService = ApiService(dio);

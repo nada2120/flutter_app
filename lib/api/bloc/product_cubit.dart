@@ -13,21 +13,9 @@ class ProductCubit extends Cubit<ProductState> {
 
   Future<void> loadProducts() async {
     try {
-      final box = await Hive.openBox<Product>("cart");
-
-      if (box.isNotEmpty) {
-        final loadedProducts = box.values.toList();
-        emit(ProductLoaded(loadedProducts));
-        return;
-      }
-
       print("Fetching products from API...");
       final products = await repository.fetchProducts();
       print("Fetched: ${products.length} items");
-
-      await box.clear();
-      await box.addAll(products);
-
       emit(ProductLoaded(products));
     } catch (e) {
       print("Error occurred: $e");

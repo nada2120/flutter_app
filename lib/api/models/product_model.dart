@@ -1,30 +1,22 @@
 import 'package:equatable/equatable.dart';
-import 'package:hive/hive.dart';
 import 'category_model.dart';
 
-part 'product_model.g.dart';
 
-@HiveType(typeId: 0)
-class Product extends HiveObject with EquatableMixin {
-  @HiveField(0)
+class Product extends Equatable {
+
   final int id;
 
-  @HiveField(1)
   final String title;
 
-  @HiveField(2)
   final double price;
 
-  @HiveField(3)
   final String description;
 
-  @HiveField(4)
   final List<String> images;
 
-  @HiveField(5)
   final Category category;
 
-  Product({
+  const Product({
     required this.id,
     required this.title,
     required this.price,
