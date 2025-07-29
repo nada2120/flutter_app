@@ -17,7 +17,12 @@ const categoryPage = '/category_page';
 const categoryType = '/category_type';
 
 
-const path = "https://dummyjson.com/products";
+const items = [
+  'Price: high to low',
+  'Price: low to high',
+  'Name: A to Z',
+  'Name: Z to A'
+];
 
 int currentIndex = 0;
 final List<Widget> pages = [
