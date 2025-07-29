@@ -11,7 +11,8 @@ class CartState extends Equatable {
     double total = 0;
     items.forEach((productId, quantity) {
       final product = allProducts.firstWhere(
-            (p) => p.id == productId,
+            (p) => p.id == productId.id,
+          orElse: () => productId
       );
       total += product.price * quantity;
     });

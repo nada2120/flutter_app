@@ -4,6 +4,7 @@ import 'package:team_project/api/bloc/product_cubit.dart';
 import '../../../common/custom_appbar.dart';
 import '../../../common/shopping_cart.dart';
 import '../../../constants/colors.dart';
+import '../../../constants/texts.dart';
 import '../widgets/categories.dart';
 import '../widgets/picture_feature.dart';
 import '../../../common/gridview_card.dart';
@@ -28,7 +29,10 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: CustomAppbar(
         title: 'E-commerce',
-        leading: Icon(Icons.search),
+        leading: IconButton(
+            onPressed: (){Navigator.pushNamed(context, searchPage);},
+            icon: Icon(Icons.search),
+        )
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),

@@ -6,6 +6,7 @@ import 'package:team_project/favoritePage/presentation/manager/favorite_cubit.da
 import 'package:team_project/favoritePage/presentation/manager/favorite_state.dart';
 import 'package:team_project/common/gridview_card.dart';
 import '../../../common/fav_button.dart';
+import '../../../constants/texts.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({super.key});
@@ -22,20 +23,12 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       appBar: CustomAppbar(
           title: 'Favorite',
-          // actions: BlocBuilder<FavoriteCubit, FavoriteState>(
-          //   builder: (context, state) {
-          //     if (state.favorites.isNotEmpty) {
-          //       return IconButton(
-          //         onPressed: () {
-          //           context.read<FavoriteCubit>().clearFavorite();
-          //         },
-          //         icon: const Icon(Icons.delete, color: Colors.white, size: 24),
-          //       );
-          //     } else {
-          //       return const SizedBox();
-          //     }
-          //   },
-          // ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pushNamed(context, navigationBarMenu);
+            },
+            icon: Icon(Icons.arrow_back_ios, color: primaryColor,)
+        ),
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<FavoriteCubit, FavoriteState>(

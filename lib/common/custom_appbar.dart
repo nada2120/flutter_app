@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:team_project/common/shopping_cart.dart';
 
 import '../constants/colors.dart';
+import '../constants/texts.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -48,7 +49,12 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.favorite_outline),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, favoritePage);
+                      },
+                      icon: Icon(Icons.favorite_outline)
+                  ),
                   SizedBox(width: 4,),
                   ShoppingCart()
                 ],

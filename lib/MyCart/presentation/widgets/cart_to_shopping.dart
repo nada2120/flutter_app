@@ -51,8 +51,8 @@ class CartToShopping extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(product.title, style: TextStyle(fontSize: 16),),
-                    const SizedBox(height: 8),
+                    Text(product.title, style: TextStyle(fontSize: 16),overflow: TextOverflow.ellipsis,),
+                    const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

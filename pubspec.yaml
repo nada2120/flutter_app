@@ -24,6 +24,7 @@ dependencies:
   json_annotation: ^4.9.0
   carousel_slider: ^5.1.1
   smooth_page_indicator: ^1.2.1
+  badges: ^3.1.2
   lottie: ^3.3.1
   iconsax_flutter: ^1.0.1
   flutter_intl_phone_field: ^0.0.7

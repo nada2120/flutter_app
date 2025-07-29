@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:team_project/common/custom_appbar.dart';
 import 'package:team_project/constants/colors.dart';
 
+import '../../../api/bloc/product_cubit.dart';
 import '../../../api/models/product_model.dart';
 import '../../../constants/texts.dart';
 import '../../../homePage/presentation/manager/bloc/cart_bloc.dart';
-import '../../../homePage/presentation/manager/bloc/cart_event.dart';
 import '../../../homePage/presentation/manager/bloc/cart_state.dart';
 import '../widgets/cart_to_shopping.dart';
 
@@ -18,7 +18,12 @@ class MyCart extends StatefulWidget {
 }
 
 class _MyCartState extends State<MyCart> {
+
   @override
+  void initState() {
+    super.initState();
+    context.read<ProductCubit>().loadProducts();
+  }
 
 
   @override
@@ -32,20 +37,6 @@ class _MyCartState extends State<MyCart> {
           },
           icon: Icon(Icons.arrow_back_ios, color: primaryColor,)
       ),
-      // actions:  BlocBuilder<CartBloc, CartState>(
-      //   builder: (context, state) {
-      //     if (state.items.isNotEmpty) {
-      //       return IconButton(
-      //         onPressed: () {
-      //           context.read<CartBloc>().add(ClearCart());
-      //         },
-      //         icon: const Icon(Icons.delete, color: Colors.white, size: 24),
-      //       );
-      //     } else {
-      //       return const SizedBox();
-      //     }
-      //   },
-      // ),
       ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {
@@ -70,7 +61,9 @@ class _MyCartState extends State<MyCart> {
                     itemBuilder: (context, index) {
                       final entry = items[index];
                       final product = state.allProducts.firstWhere(
-                              (p) => p.id == entry.key.id);
+                              (p) => p.id == entry.key.id,
+                          orElse: () => entry.key
+                      );
                       final quantity = entry.value;
 
                       return CartToShopping(product: product, quantity: quantity);

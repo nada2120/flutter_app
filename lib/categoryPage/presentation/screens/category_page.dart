@@ -24,7 +24,10 @@ class _CategoryPageState extends State<CategoryPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(title: "Categories",
-       leading: Icon(Icons.search),
+       leading: IconButton(
+         onPressed: (){Navigator.pushNamed(context, searchPage);},
+         icon: Icon(Icons.search),
+       )
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),

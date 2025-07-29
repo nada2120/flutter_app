@@ -1,3 +1,4 @@
+import 'package:badges/badges.dart' as badges;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:team_project/constants/colors.dart';
@@ -23,24 +24,19 @@ class ShoppingCart extends StatelessWidget {
             children: [
               const Icon(Icons.shopping_cart),
               if (totalQuantity > 0)
-                Positioned(
-                  left: 4,
-                  bottom: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ContainerButton(
-                      sizeContainer: 18,
-                      colorContainer: primaryColor,
-                      widget: Text(
-                        '$totalQuantity',
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+                badges.Badge(
+                  badgeContent: Text(
+                    '$totalQuantity',
+                    style: TextStyle(color: Colors.white),
                   ),
+                  position: badges.BadgePosition.topEnd(top: -10, end: -12),
+                  badgeAnimation: badges.BadgeAnimation.scale(
+                    animationDuration: Duration(milliseconds: 300),
+                    loopAnimation: false,
+                  ),
+                  child: Icon(Icons.shopping_cart),
                 ),
+
             ],
           ),
         );
