@@ -33,8 +33,8 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppbar(title: 'Search'),
-      body: SingleChildScrollView(
-        child: Padding(
+      body:
+         Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
@@ -87,7 +87,7 @@ class _SearchPageState extends State<SearchPage> {
             ],
           ),
         ),
-      ),
+
     );
   }
 }
