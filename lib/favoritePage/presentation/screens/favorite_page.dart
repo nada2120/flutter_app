@@ -22,20 +22,20 @@ class _FavoritePageState extends State<FavoritePage> {
     return Scaffold(
       appBar: CustomAppbar(
           title: 'Favorite',
-          actions: BlocBuilder<FavoriteCubit, FavoriteState>(
-            builder: (context, state) {
-              if (state.favorites.isNotEmpty) {
-                return IconButton(
-                  onPressed: () {
-                    context.read<FavoriteCubit>().clearFavorite();
-                  },
-                  icon: const Icon(Icons.delete, color: Colors.white, size: 24),
-                );
-              } else {
-                return const SizedBox();
-              }
-            },
-          ),
+          // actions: BlocBuilder<FavoriteCubit, FavoriteState>(
+          //   builder: (context, state) {
+          //     if (state.favorites.isNotEmpty) {
+          //       return IconButton(
+          //         onPressed: () {
+          //           context.read<FavoriteCubit>().clearFavorite();
+          //         },
+          //         icon: const Icon(Icons.delete, color: Colors.white, size: 24),
+          //       );
+          //     } else {
+          //       return const SizedBox();
+          //     }
+          //   },
+          // ),
       ),
       body: SingleChildScrollView(
         child: BlocBuilder<FavoriteCubit, FavoriteState>(

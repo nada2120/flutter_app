@@ -14,6 +14,7 @@ class CategoryPage extends StatefulWidget {
 
 class _CategoryPageState extends State<CategoryPage> {
 
+  @override
   void initState() {
     super.initState();
     context.read<ProductCubit>().loadProducts();
@@ -22,7 +23,9 @@ class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(title: "Categories"),
+      appBar: CustomAppbar(title: "Categories",
+       leading: Icon(Icons.search),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
           child: BlocBuilder<ProductCubit, ProductState>(

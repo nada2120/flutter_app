@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: CustomAppbar(
         title: 'E-commerce',
-        actions: const ShoppingCart(),
+        leading: Icon(Icons.search),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16.0),

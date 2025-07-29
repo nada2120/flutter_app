@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:team_project/common/button_add.dart';
 import 'package:team_project/common/label_widget.dart';
 import '../api/models/product_model.dart';
 import '../constants/texts.dart';
@@ -30,7 +31,7 @@ class _GridViewCardState extends State<GridViewCard> {
         crossAxisCount: 2,
         mainAxisSpacing: 8,
         crossAxisSpacing: 8,
-        childAspectRatio: 0.7,
+        childAspectRatio: 0.6,
       ),
       itemBuilder: (context, index) {
         final product = widget.products[index];
@@ -67,7 +68,9 @@ class _GridViewCardState extends State<GridViewCard> {
                     ),
                   ),
                 ),
-                widget.extraWidget,
+               // widget.extraWidget,
+                const SizedBox(height: 4),
+                ButtonAdd(product: product,)
               ],
             ),
           ),

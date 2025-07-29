@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:team_project/common/button_add.dart';
 import 'package:team_project/common/custom_appbar.dart';
 
 import '../../../api/bloc/product_cubit.dart';
@@ -17,6 +18,7 @@ class CategoryType extends StatefulWidget {
 
 class _CategoryTypeState extends State<CategoryType> {
 
+  @override
   void initState() {
     super.initState();
     context.read<ProductCubit>().loadProducts();
@@ -60,7 +62,7 @@ class _CategoryTypeState extends State<CategoryType> {
                       ],
                     );
                   },
-
+                  //extraWidget: ButtonAdd(product: ,),
                 );
               } else if(state is ProductError) {
                 return const Center(child: Text('Products loading failed'));

@@ -28,7 +28,7 @@ class ButtonAdd extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CartBloc, CartState>(
       builder: (context, state) {
-        final quantity = state.items[product.id] ?? 0;
+        final quantity = state.items[product] ?? 0;
 
         final child = SizedBox(
           height: 30,

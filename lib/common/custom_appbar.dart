@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:team_project/common/shopping_cart.dart';
 
 import '../constants/colors.dart';
 
 class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final Widget actions;
+  //final Widget actions;
   final Widget leading;
 
   @override
   final Size preferredSize;
 
-  const CustomAppbar({
+   CustomAppbar({
     super.key,
     required this.title,
-    Widget? actions,
+   // Widget? actions,
     Widget? leading,
-  })  : actions = actions ?? const SizedBox(),
+  })  :
         leading = leading ?? const SizedBox(),
         preferredSize = const Size.fromHeight(60);
 
@@ -44,7 +45,14 @@ class CustomAppbar extends StatelessWidget implements PreferredSizeWidget {
             ),
             Align(
               alignment: Alignment.centerRight,
-              child: actions,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.favorite_outline),
+                  SizedBox(width: 4,),
+                  ShoppingCart()
+                ],
+              ),
             ),
           ],
         ),

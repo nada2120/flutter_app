@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:team_project/constants/colors.dart';
 import 'package:team_project/homePage/presentation/manager/bloc/cart_bloc.dart';
 import 'package:team_project/homePage/presentation/manager/bloc/cart_state.dart';
 
@@ -20,16 +21,16 @@ class ShoppingCart extends StatelessWidget {
           },
           icon: Stack(
             children: [
-              const Icon(Icons.shopping_cart, color: Colors.white),
+              const Icon(Icons.shopping_cart),
               if (totalQuantity > 0)
                 Positioned(
-                  left: 3,
-                  bottom: 3,
+                  left: 4,
+                  bottom: 5,
                   child: Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: ContainerButton(
                       sizeContainer: 18,
-                      colorContainer: Colors.black,
+                      colorContainer: primaryColor,
                       widget: Text(
                         '$totalQuantity',
                         style: const TextStyle(

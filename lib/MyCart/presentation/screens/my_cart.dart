@@ -32,20 +32,20 @@ class _MyCartState extends State<MyCart> {
           },
           icon: Icon(Icons.arrow_back_ios, color: primaryColor,)
       ),
-      actions:  BlocBuilder<CartBloc, CartState>(
-        builder: (context, state) {
-          if (state.items.isNotEmpty) {
-            return IconButton(
-              onPressed: () {
-                context.read<CartBloc>().add(ClearCart());
-              },
-              icon: const Icon(Icons.delete, color: Colors.white, size: 24),
-            );
-          } else {
-            return const SizedBox();
-          }
-        },
-      ),
+      // actions:  BlocBuilder<CartBloc, CartState>(
+      //   builder: (context, state) {
+      //     if (state.items.isNotEmpty) {
+      //       return IconButton(
+      //         onPressed: () {
+      //           context.read<CartBloc>().add(ClearCart());
+      //         },
+      //         icon: const Icon(Icons.delete, color: Colors.white, size: 24),
+      //       );
+      //     } else {
+      //       return const SizedBox();
+      //     }
+      //   },
+      // ),
       ),
       body: BlocBuilder<CartBloc, CartState>(
         builder: (context, state) {

@@ -108,7 +108,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                       )
                   ),
                   SizedBox(height: 16,),
-                  Center(child: ButtonAdd(
+                  Center(child:
+                  ButtonAdd(
                     product: widget.product,
                     addButtonText: "+ Add To Cart",
                     widthContainer: 150,
