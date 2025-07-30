@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/categoryPage/presentation/screens/category_page.dart';
 import 'package:team_project/homePage/presentation/screens/home_page.dart';
-import 'package:team_project/screens/search_page.dart';
+import 'package:team_project/searchPage/presentation/screens/search_page.dart';
 import '../MyCart/presentation/screens/my_cart.dart';
 import '../api/models/product_model.dart';
 import '../categoryPage/presentation/screens/category_type.dart';

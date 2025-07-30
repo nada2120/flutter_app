@@ -4,7 +4,7 @@ import 'package:team_project/categoryPage/presentation/screens/category_page.dar
 import '../favoritePage/presentation/screens/favorite_page.dart';
 import '../homePage/presentation/screens/home_page.dart';
 import '../screens/profile_page.dart';
-import '../screens/search_page.dart';
+import '../searchPage/presentation/screens/search_page.dart';
 
 const createAccountScreen = '/create_account';
 const homeScreen = '/home_page';
