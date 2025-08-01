@@ -26,7 +26,11 @@ dependencies:
   smooth_page_indicator: ^1.2.1
   badges: ^3.1.2
   lottie: ^3.3.1
+  bottom_sheet: ^4.0.4
+  modal_side_sheet: ^0.0.1
+  range_slider_flutter: ^0.0.2
   iconsax_flutter: ^1.0.1
+  dropdown_button2: ^2.3.9
   flutter_intl_phone_field: ^0.0.7
 
 dev_dependencies:

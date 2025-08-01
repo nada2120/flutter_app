@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:team_project/searchPage/presentation/manager/search_cubit.dart';
 
 import '../../../constants/texts.dart';
 
 class SortButton extends StatefulWidget {
+
+
   const SortButton({super.key});
 
   @override
@@ -35,6 +39,7 @@ class _SortButtonState extends State<SortButton> {
                     setState(() {
                       selected = option;
                     });
+                    context.read<SearchCubit>().sortProducts(option);
                     hideOverlay();
                   },
                 );

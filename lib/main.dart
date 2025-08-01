@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:team_project/screens/app_router.dart';
+import 'package:team_project/searchPage/presentation/manager/search_cubit.dart';
 import 'api/bloc/product_cubit.dart';
 import 'api/repository/product_repository.dart';
 import 'api/services/api_service.dart';
@@ -39,6 +40,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider<FavoriteCubit>(
                   create: (_) => FavoriteCubit(),
                 ),
+                BlocProvider<SearchCubit>(
+                    create: (_) => SearchCubit(state.products)
+                )
               ],
               child: MaterialApp(
                 debugShowCheckedModeBanner: false,

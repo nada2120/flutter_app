@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-import '../constants/colors.dart';
-import '../constants/texts.dart';
-
 class SizeButton extends StatefulWidget {
-  const SizeButton({super.key});
+  final List<String> itemButtons;
+  final Color defaultColor;
+
+  SizeButton({
+    super.key,
+    required this.itemButtons,
+    this.defaultColor = const Color(0xFFF83758),
+  });
 
   @override
   _SizeButtonState createState() => _SizeButtonState();
@@ -12,14 +16,13 @@ class SizeButton extends StatefulWidget {
 
 class _SizeButtonState extends State<SizeButton> {
   String selectedSize = "";
-  final Color defaultColor = primaryColor;
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 8.0,
       runSpacing: 8.0,
-      children: sizes.map((size) => buildSizeButton(size)).toList(),
+      children: widget.itemButtons.map((size) => buildSizeButton(size)).toList(),
     );
   }
 
@@ -33,8 +36,8 @@ class _SizeButtonState extends State<SizeButton> {
         });
       },
       style: ElevatedButton.styleFrom(
-        backgroundColor: isSelected ? Colors.white : defaultColor,
-        side: BorderSide(color: defaultColor),
+        backgroundColor: isSelected ? widget.defaultColor : Colors.white,
+        side: BorderSide(color: widget.defaultColor),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
@@ -42,7 +45,7 @@ class _SizeButtonState extends State<SizeButton> {
       child: Text(
         size,
         style: TextStyle(
-          color: isSelected ? defaultColor : Colors.white,
+          color: isSelected ? Colors.white : widget.defaultColor,
         ),
       ),
     );

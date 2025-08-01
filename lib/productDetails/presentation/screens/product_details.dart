@@ -80,7 +80,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   LabelWidget(
                     title: 'Size',
                     gap: 8,
-                    widget: SizeButton()
+                    widget: SizeButton(itemButtons: sizes)
                   ),
                   SizedBox(height: 16,),
                   LabelWidget(

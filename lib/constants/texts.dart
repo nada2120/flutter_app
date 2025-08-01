@@ -24,6 +24,27 @@ const items = [
   'Name: Z to A'
 ];
 
+const stars = [
+  '1',
+  '2',
+  '3',
+  '4',
+  '5'
+];
+
+const discountList = [
+  '50% off',
+  '40% off',
+  '30% off',
+  '25% off',
+
+];
+
+const buttons = [
+  'Reset',
+  'Apply'
+];
+
 int currentIndex = 0;
 final List<Widget> pages = [
   HomePage() ,
