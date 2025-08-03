@@ -18,21 +18,36 @@ class SearchCubit extends Cubit<SearchState> {
 }
 
    void sortProducts(String sortType) {
-     List<Product> filteredList = searchedWord.isEmpty
+     List<Product> sortedList = searchedWord.isEmpty
          ? List<Product>.from(allProducts)
          : allProducts.where(
              (product) => product.title.toLowerCase().startsWith(searchedWord.toLowerCase())
      ).toList();
 
      if (sortType == 'Name: A to Z') {
-       filteredList.sort((a, b) => a.title.compareTo(b.title));
+       sortedList.sort((a, b) => a.title.compareTo(b.title));
      } else if (sortType == 'Name: Z to A') {
-       filteredList.sort((a, b) => b.title.compareTo(a.title));
+       sortedList.sort((a, b) => b.title.compareTo(a.title));
      } else if (sortType == "Price: high to low") {
-       filteredList.sort((a, b) => b.price.compareTo(a.price));
+       sortedList.sort((a, b) => b.price.compareTo(a.price));
      } else if (sortType == "Price: low to high") {
-       filteredList.sort((a, b) => a.price.compareTo(b.price));
+       sortedList.sort((a, b) => a.price.compareTo(b.price));
      }
+
+     emit(SearchState(sortedList));
+   }
+
+   // bool isRange(double value, double minValue, double maxValue) {
+   //    return value >= minValue && value <= maxValue;
+   // }
+
+   void filterProducts(double minPrice, double maxPrice, String category) {
+     List<Product> filteredList = allProducts.where(
+             (product) =>
+         product.category.name == category &&
+             product.price >= minPrice &&
+             product.price <= maxPrice
+     ).toList();
 
      emit(SearchState(filteredList));
    }

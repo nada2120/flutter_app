@@ -1,26 +1,38 @@
 import 'package:flutter/material.dart';
 
 class PriceRangeSlider extends StatefulWidget {
-  const PriceRangeSlider({super.key});
+  final double sliderMin;
+  final double sliderMax;
+  final Function(RangeValues)? onChanged;
+
+  const PriceRangeSlider({
+    super.key,
+    this.sliderMin = 0,
+    this.sliderMax = 100,
+    this.onChanged,
+  });
 
   @override
   State<PriceRangeSlider> createState() => _PriceRangeSliderState();
 }
 
 class _PriceRangeSliderState extends State<PriceRangeSlider> {
-  RangeValues priceRange = const RangeValues(20, 60);
+  late RangeValues priceRange;
+
+  @override
+  void initState() {
+    super.initState();
+    priceRange = RangeValues(widget.sliderMin + 20, widget.sliderMin + 60);
+  }
 
   @override
   Widget build(BuildContext context) {
-    double sliderMin = 0;
-    double sliderMax = 100;
-
     return LayoutBuilder(
       builder: (context, constraints) {
         double sliderWidth = constraints.maxWidth;
 
-        double startPercent = (priceRange.start - sliderMin) / (sliderMax - sliderMin);
-        double endPercent = (priceRange.end - sliderMin) / (sliderMax - sliderMin);
+        double startPercent = (priceRange.start - widget.sliderMin) / (widget.sliderMax - widget.sliderMin);
+        double endPercent = (priceRange.end - widget.sliderMin) / (widget.sliderMax - widget.sliderMin);
 
         double startX = sliderWidth * startPercent;
         double endX = sliderWidth * endPercent;
@@ -37,8 +49,8 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                 right: 0,
                 child: RangeSlider(
                   values: priceRange,
-                  min: sliderMin,
-                  max: sliderMax,
+                  min: widget.sliderMin,
+                  max: widget.sliderMax,
                   divisions: 100,
                   activeColor: Colors.black,
                   inactiveColor: Colors.grey[300],
@@ -46,6 +58,9 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                     setState(() {
                       priceRange = values;
                     });
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(values);
+                    }
                   },
                 ),
               ),
@@ -58,7 +73,7 @@ class _PriceRangeSliderState extends State<PriceRangeSlider> {
                 ),
               ),
               Positioned(
-                left: endX - 22 ,
+                left: endX - 22,
                 top: 40,
                 child: Text(
                   '\$${priceRange.end.round()}',

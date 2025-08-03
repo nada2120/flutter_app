@@ -38,9 +38,8 @@ class _SearchPageState extends State<SearchPage> {
           icon: Icon(Icons.arrow_back_ios, color: primaryColor),
         ),
       ),
-      body: Padding(
+      body: ListView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
           children: [
             TextField(
               controller: searchTextController,
@@ -82,8 +81,8 @@ class _SearchPageState extends State<SearchPage> {
                     return const Center(child: Text('No products found'));
                   }
 
-                  return isSearched
-                      ? GridViewCard(
+                  return //isSearched ?
+                  GridViewCard(
                     products: results,
                     imageBuilder: (product) {
                       return Stack(
@@ -101,13 +100,13 @@ class _SearchPageState extends State<SearchPage> {
                         ],
                       );
                     },
-                  )
-                      : const SizedBox();
+                  );
+                      //: const SizedBox();
                 },
               ),
             ),
           ],
-        ),
+
       ),
 
 

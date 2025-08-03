@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_side_sheet/modal_side_sheet.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:team_project/api/bloc/product_cubit.dart';
+import 'package:team_project/searchPage/presentation/manager/search_cubit.dart';
+import 'package:team_project/searchPage/presentation/widgets/button.dart';
 
 import '../../../common/container_button.dart';
 import '../../../common/label_widget.dart';
@@ -8,6 +11,7 @@ import '../../../common/size_button.dart';
 import '../widgets/side_slider.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/texts.dart';
+import 'category_dropdown.dart';
 
 class FilterSheetController {
   static void show(BuildContext context) {
@@ -29,6 +33,10 @@ class SearchFilterSheet extends StatefulWidget {
 
 class _SearchFilterSheetState extends State<SearchFilterSheet> {
   String selectedValue = 'Option 1';
+  int? isSelectedStarIndex;
+  int? isSelectedColorIndex;
+  double startRange = 20;
+  double endRange = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +49,7 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
+            color: Colors.grey.withValues(alpha: 0.3),
             blurRadius: 10,
             offset: const Offset(-4, 0),
           )
@@ -59,7 +67,13 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             const SizedBox(height: 8),
             const Divider(thickness: 1, color: Color(0xFFF3F3F6)),
             const SizedBox(height: 8),
-            LabelWidget(title: 'Price', widget: PriceRangeSlider()),
+            LabelWidget(title: 'Price',
+                widget: PriceRangeSlider(onChanged:
+                (range){
+                  startRange = range.start;
+                  endRange = range.end;
+                }
+                )),
             const SizedBox(height: 16),
             LabelWidget(
               title: 'Color',
@@ -69,12 +83,20 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   scrollDirection: Axis.horizontal,
                   itemCount: colorsFilter.length,
                   itemBuilder: (context, index) {
+                    final isSelected = isSelectedColorIndex == index;
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: ContainerButton(
-                        sizeContainer: 30,
-                        colorContainer: colorsFilter[index],
-                        widget: const SizedBox(),
+                      child: InkWell(
+                        onTap: (){
+                          setState(() {
+                            isSelectedColorIndex = index;
+                          });
+                        },
+                        child: ContainerButton(
+                          sizeContainer: 30,
+                          colorContainer: colorsFilter[index],
+                          widget: const SizedBox(),
+                        ),
                       ),
                     );
                   },
@@ -90,18 +112,29 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
                   scrollDirection: Axis.horizontal,
                   itemCount: stars.length,
                   itemBuilder: (context, index) {
+                    final isSelected = isSelectedStarIndex == index;
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: ContainerButton(
-                        sizeContainer: 50,
-                        colorBorder: Colors.black,
-                        sizeBorder: 1,
-                        widget: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.star),
-                            Text(stars[index]),
-                          ],
+                      child: InkWell(
+                        onTap: (){
+                          setState(() {
+                            isSelectedStarIndex = index;
+                          });
+                        },
+                        child: ContainerButton(
+                          sizeContainer: 50,
+                          colorBorder: Colors.black,
+                          colorContainer: isSelected ? Colors.black : Colors.white,
+                          sizeBorder: 1,
+                          widget: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.star, color: isSelected ? Colors.white : Colors.black,),
+                              Text(stars[index], style: TextStyle(
+                                color: isSelected ? Colors.white : Colors.black,
+                              ),),
+                            ],
+                          ),
                         ),
                       ),
                     );
@@ -113,47 +146,24 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             LabelWidget(
               title: 'Category',
               gap: 8,
-              widget: DropdownButtonHideUnderline(
-                child: DropdownButton2<String>(
-                  value: selectedValue,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedValue = value!;
-                    });
-                  },
-                  items: ['Option 1', 'Option 2', 'Option 3']
-                      .map(
-                        (item) => DropdownMenuItem<String>(
-                      value: item,
-                      child: Row(
-                        children: [
-                          const SizedBox(width: 8),
-                          const Icon(Icons.category, size: 18, color: Colors.grey),
-                          const SizedBox(width: 8),
-                          Text(item, style: const TextStyle(fontSize: 14)),
-                        ],
-                      ),
-                    ),
-                  )
-                      .toList(),
-                  buttonStyleData: ButtonStyleData(
-                    height: 40,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: Colors.black26),
-                      color: Colors.white,
-                    ),
-                  ),
-                  dropdownStyleData: DropdownStyleData(
-                    maxHeight: 200,
-                    width: 280,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
+              widget: BlocBuilder<ProductCubit, ProductState>(
+                builder: (context, state) {
+                  if (state is ProductLoaded) {
+                    final products = state.products;
+                    final categories = products.map((product) => product.category).toSet().toList();
+
+                    return CategoryDropdown(
+                      categories: categories,
+                      onCategorySelected: (String value) {
+                        setState(() {
+                          selectedValue = value;
+                        });
+                      },
+                    );
+                  } else {
+                    return const SizedBox();
+                  }
+                },
               ),
             ),
             const SizedBox(height: 16),
@@ -164,7 +174,24 @@ class _SearchFilterSheetState extends State<SearchFilterSheet> {
             ),
             const SizedBox(height: 32),
             Center(
-              child: SizeButton(itemButtons: buttons, defaultColor: Colors.black),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                 Button(
+                     textButton: 'Cancel',
+                     onTap: () {
+                       Navigator.pop(context);
+                     }
+                 ),
+                  Button(
+                      textButton: 'Apply',
+                      onTap: () {
+                        context.read<SearchCubit>().filterProducts(startRange, endRange, selectedValue);
+                        Navigator.pop(context);
+                      }
+                  )
+                ],
+              ),
             ),
           ],
         ),
